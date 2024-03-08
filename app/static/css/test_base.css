@@ -1,0 +1,96 @@
+
+body{
+	background-color: black;
+	color: whitesmoke;
+}
+:root{
+	--link_color:whitesmoke;
+	--hover_link:white;
+}
+
+a{
+	color: var(--link_color);
+}
+a:hover{
+	color: var(--hover_link);
+}
+
+
+
+header>.container{
+	position: relative;
+	padding-left: 35rem;
+	padding-top: 3rem;
+	
+
+}
+
+
+
+header>.container >a{
+	position: relative;
+	font-size: 3em;
+	text-decoration: none;
+
+
+
+
+}
+
+
+header>.container ul{
+
+	position: relative;
+	padding-bottom: 2rem;
+	 
+	 
+
+}
+
+
+header>.container ul li{
+
+	display: inline;
+	list-style: none;
+	padding: 1rem;
+
+}
+
+
+
+header>.container ul li a{
+
+	text-decoration: none;
+	font-size: 2em;
+
+
+}
+
+
+
+footer>.container{
+	position: relative;
+	top: 5%;
+	padding-left: 30rem;
+	
+
+
+}
+
+
+
+
+footer>.container li{
+	display: inline;
+	list-style: none;
+
+
+}
+
+footer>.container li a{
+	text-decoration: none;
+	font-size: 2rem;
+
+
+}
+

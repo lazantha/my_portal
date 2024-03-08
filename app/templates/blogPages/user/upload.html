@@ -1,0 +1,29 @@
+{% extends 'blogPages/base.html' %}
+{% block head %}
+    <title>Upload</title>
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    
+    
+<div class="form-group d-flex justify-content-center">
+	<form action="{% url 'upload' %}" method="post">
+		{% csrf_token %}
+		{{form.topic}} <br>
+		{{form.link}} <br>
+		{% if form.link.errors %}
+			{% for error in form.link.errors %}
+					<p>{{error}}</p>
+			{% endfor %}
+		{% endif %}
+		{{form.category}} <br>
+		{{form.content}} <br>
+		<input type="submit" value="Upload" class="btn btn-secondary btn btn-sm"> <input type="reset" value="Clear" class="btn btn-secondary btn btn-sm">
+	</form>
+  </div> 
+  
+
+{% endblock %}

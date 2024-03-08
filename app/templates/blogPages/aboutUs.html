@@ -1,0 +1,48 @@
+
+{% extends 'blogPages/base.html' %}
+{% load static %}
+{% block head %}
+	<title>About Us</title>
+	<link rel="stylesheet" href="{% static 'css/about.css' %}">
+	<style>
+		.cover{
+				width: 60vw;
+				height: 60vh;
+				background-image: url("{% static 'images/back.JPG' %}");
+				background-size: 50%;
+				background-repeat: no-repeat;
+				background-position: right;
+				border-radius: 50px;
+				opacity: 0.09;
+
+		}
+		
+	</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+	
+
+<div class="d-flex justify-content-evenly">
+	<div class="p-2">
+		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere blanditiis quibusdam corrupti, quam dignissimos rem inventore? Id iure omnis reprehenderit obcaecati architecto similique ipsam error, a placeat perferendis ab earum nulla voluptatem enim. Odio incidunt amet exercitationem quo tempora, obcaecati illum quae labore deleniti repudiandae fugit nesciunt minus expedita veniam delectus quidem vero sit ipsa tenetur magnam. Quod veniam nisi, dignissimos suscipit eaque itaque, delectus aspernatur reiciendis voluptatum consequuntur necessitatibus nobis iste commodi officia, molestias repellat illum unde at ipsum velit iusto consequatur. Expedita voluptatum aut magni blanditiis consequuntur, laborum, eius quisquam dolorum itaque, repudiandae vitae laudantium in ex ipsum!</p>
+
+		<form action="{% url 'aboutUs' %}" method="post">
+			{% csrf_token %}
+			{{form.email}} <br>
+			{{form.statement}} <br>
+			<input type="submit" value="Send" class="btn btn-secondary" >
+		</form>
+	</div>
+	<div class="p-2">
+		<div class="cover" style="margin-right: 2rem;"></div>
+	</div>
+	
+  </div>	
+	
+{% endblock %}
+
+

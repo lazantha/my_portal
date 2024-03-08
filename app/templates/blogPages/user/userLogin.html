@@ -1,0 +1,26 @@
+{% extends 'blogPages/base.html' %}
+{% block head %}
+	<title>Sign In</title>
+
+{% endblock %}
+
+{% block content %}
+
+	<div class="form-group d-flex justify-content-center">
+		<form action="{% url 'userLogin' %}" method="post">
+		  	{% csrf_token %}
+		  	{{form.name}}<br>
+		  	{{form.email}} <br>
+  			<input type="submit" class="btn btn-secondary btn-sm"  value="Sign In">
+  			<a href="{% url 'userSignUp' %}">Not have an account ?</a>
+				
+		</form>
+
+	</div>
+	<section style="padding-bottom:15rem ;"></section>
+{% endblock %}
+
+
+		
+
+	

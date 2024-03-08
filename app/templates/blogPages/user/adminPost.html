@@ -1,0 +1,45 @@
+{% extends 'blogPages/base.html' %}
+
+{% block head %}
+	<title>Admin Post</title>
+	<style>
+		.item{
+	padding-right: 0.5rem;
+		}
+
+		.main-container{
+			display: flex;
+			column-gap: 0.5rem;
+			flex-wrap: wrap;
+		}
+		iframe{
+			max-width: 100%;
+			height: 20%;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+
+{% if data %}
+<div class="main-container">
+    {% for row in data %}   
+    <div class="item">
+        <div class="card bg-black text-white ps-5" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ row.topic }}</h5>
+                <iframe src="{{ row.link }}" frameborder="0"></iframe>
+                <p class="card-subtitle mb-2 text-white">{{ row.content }}</p>
+                <span class="uploaded">at: {{ row.created_at }}</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <h1 style="text-align: center; margin-bottom: 2rem;padding-top: 3rem;">Not posted Yet !</h1>
+{% endif %}
+
+
+<section style="padding-bottom:10rem ;"></section>
+{% endblock %}

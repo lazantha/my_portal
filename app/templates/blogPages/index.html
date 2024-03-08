@@ -1,0 +1,92 @@
+{% extends 'blogPages/base.html' %}
+{% load static %}
+{% block head %}
+     <link rel="stylesheet" href="{% static 'css/test_index_2.css' %}">
+
+
+{% endblock %}
+
+{% block content %}
+<hr id="header-hr">
+
+    <div class="sign">
+        <a href="{% url 'userLogin' %}">Sign In</a>    
+    </div>
+    
+    
+<!-- first section -->
+<h2>EDUCATION</h2>
+<div class="main-container">
+    {% for row in data_edu %}   
+    <div class="item">
+        <div class="card card bg-black text-white ps-5" style="width: 18rem;">
+            <div class="card-body ">
+            <h5 class="card-title"> {{row.topic}}</h5>
+            <iframe src="{{row.link}}" frameborder="0"></iframe>
+            <p class="card-subtitle mb-2 text-white">{{row.content}}</p>
+            <span class="uploaded">uploaded by:{{row.user_id__name}} at: {{row.created_at}}</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- second section -->
+<h2>KNOWLEDGE</h2>
+<div class="main-container">
+    {% for row in data_know %}   
+    <div class="item">
+        <div class="card card bg-black text-white ps-5" style="width: 18rem;">
+            <div class="card-body ">
+            <h5 class="card-title"> {{row.topic}}</h5>
+            <iframe src="{{row.link}}" frameborder="0"></iframe>
+            <p class="card-subtitle mb-2 text-white">{{row.content}}</p>
+            <apan class="uploaded">uploaded by:{{row.user_id__name}} at: {{row.created_at}}</apan>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- third section -->
+<h2>ENTERTAINMENT</h2>
+<div class="main-container">
+    {% for row in data_enter %}   
+    <div class="item">
+        <div class="card card bg-black text-white ps-5" style="width: 18rem;">
+            <div class="card-body ">
+            <h5 class="card-title"> {{row.topic}}</h5>
+            <iframe src="{{row.link}}" frameborder="0"></iframe>
+            <p class="card-subtitle mb-2 text-white">{{row.content}}</p>
+            <apan class="uploaded">uploaded by:{{row.user_id__name}} at: {{row.created_at}}</apan>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- forth section -->
+<h2>HEALTH AND FITNESS</h2>
+<div class="main-container">
+    {% for row in data_fitness %}   
+    <div class="item">
+        <div class="card card bg-black text-white ps-5" style="width: 18rem;">
+            <div class="card-body ">
+            <h5 class="card-title"> {{row.topic}}</h5>
+            <iframe src="{{row.link}}" frameborder="0"></iframe>
+            <p class="card-subtitle mb-2 text-white">{{row.content}}</p>
+            <apan class="uploaded">uploaded by:{{row.user_id__name}} at: {{row.created_at}}</apan>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+<hr id="footer-hr">
+
+{% endblock %}
+
+

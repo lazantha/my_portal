@@ -1,0 +1,103 @@
+{% extends 'blogPages/base.html' %}
+{% block head %}
+	<title>User</title>
+	<style>
+		h3{
+			color: whitesmoke;
+			font-weight: bold;
+		}
+		iframe{
+			width: 250px;
+			height: auto;
+		}
+		p{color: whitesmoke;}
+		.upload{
+			position: relative;
+			text-align: center;
+
+		}
+		.upload a{
+			text-decoration: none;
+			font-size: 2em;
+			color: whitesmoke;
+
+
+		}
+.item{
+	padding-right: 0.5rem;
+}
+
+.main-container{
+	display: flex;
+	column-gap: 0.5rem;
+	flex-wrap: wrap;
+}
+h2{
+	margin-left: 2rem;
+}
+hr{
+	border: 1px solid whitesmoke;
+	width: 50%;
+}
+.signOut{
+	position: absolute;
+	left: 90%;
+	top: 10%;
+
+}
+
+.signOut>a{
+	font-size: 1.3rem;
+	text-decoration: none;
+
+}
+
+		
+	</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="signOut">
+	<a href="{% url 'signOut' %}">Sign Out</a>    
+</div>
+
+
+<div class="upload" >
+	<a href="{% url 'upload' %}">Upload Posts</a>
+</div>
+
+
+<h2>Your Posts</h2>
+<hr>
+<div class="main-container">
+    {% for row in dataset %}   
+    <div class="item">
+        <div class="card card bg-black text-white ps-5" style="width: 18rem;">
+            <div class="card-body ">
+            <h5 class="card-title"> {{row.topic}}</h5>
+            <iframe src="{{row.link}}" frameborder="0"></iframe>
+            <p class="card-subtitle mb-2 text-light-emphasis">{{row.content}}</p></p>
+            <p>at: {{row.created_at}}</p>
+			<form method="post" action="{% url 'update' row.post_id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link "  style="color: green;text-decoration: none;">Update</button>
+            </form>
+            <form method="post" action="{% url 'delete' row.post_id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link" style="color: red;text-decoration: none;">Delete</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}
+
+
+		
+
+	
