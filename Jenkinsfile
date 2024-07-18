@@ -35,6 +35,16 @@ pipeline {
             steps {
                 sh '''
                     curl -sL https://get.koyeb.com | bash
+                    export PATH=$PATH:$HOME/.koyeb/bin
+                '''
+            }
+        }
+
+        stage('Verify Koyeb CLI Installation') {
+            steps {
+                sh '''
+                    export PATH=$PATH:$HOME/.koyeb/bin
+                    koyeb --version
                 '''
             }
         }
@@ -43,6 +53,7 @@ pipeline {
             steps {
                 sh '''
                     . venv/bin/activate
+                    export PATH=$PATH:$HOME/.koyeb/bin
                     koyeb service update your-service-name --branch main --api-key $KOYEB_API_KEY
                 '''
             }
@@ -51,7 +62,11 @@ pipeline {
 
     post {
         always {
-            cleanWs()
+            sh '''
+                . venv/bin/activate || true
+                deactivate || true
+                cleanWs()
+            '''
         }
     }
 }
