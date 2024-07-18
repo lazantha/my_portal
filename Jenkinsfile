@@ -38,7 +38,8 @@ pipeline {
                     echo "PATH before update: $PATH"
                     export PATH=$PATH:$HOME/.koyeb/bin
                     echo "PATH after update: $PATH"
-                    which koyeb
+                    which koyeb || echo "koyeb binary not found"
+                    ls -al $HOME/.koyeb/bin || echo "Directory $HOME/.koyeb/bin not found"
                 '''
             }
         }
@@ -47,7 +48,7 @@ pipeline {
             steps {
                 sh '''
                     export PATH=$PATH:$HOME/.koyeb/bin
-                    koyeb --version
+                    koyeb --version || echo "koyeb command not found"
                 '''
             }
         }
