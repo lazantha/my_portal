@@ -35,7 +35,10 @@ pipeline {
             steps {
                 sh '''
                     curl -sL https://get.koyeb.com | bash
+                    echo "PATH before update: $PATH"
                     export PATH=$PATH:$HOME/.koyeb/bin
+                    echo "PATH after update: $PATH"
+                    which koyeb
                 '''
             }
         }
