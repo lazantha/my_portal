@@ -15,9 +15,8 @@ pipeline {
         stage('Set Up Python Environment') {
             steps {
                 sh '''
-                    #!/bin/bash
                     python3 -m venv venv
-                    source venv/bin/activate
+                    . venv/bin/activate
                     pip install -r requirements.txt
                 '''
             }
@@ -26,8 +25,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh '''
-                    #!/bin/bash
-                    source venv/bin/activate
+                    . venv/bin/activate
                     python manage.py test
                 '''
             }
@@ -36,8 +34,7 @@ pipeline {
         stage('Deploy to Koyeb') {
             steps {
                 sh '''
-                    #!/bin/bash
-                    source venv/bin/activate
+                    . venv/bin/activate
                     koyeb service update your-service-name --branch main --api-key $KOYEB_API_KEY
                     nohup python3 manage.py runserver 0.0.0.0:8000 &
                 '''
@@ -48,7 +45,7 @@ pipeline {
     post {
         always {
             sh '''
-                #!/bin/bash
+                . venv/bin/activate || true
                 deactivate || true
                 cleanWs()
             '''
