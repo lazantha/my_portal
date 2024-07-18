@@ -38,8 +38,7 @@ pipeline {
                     echo "PATH before update: $PATH"
                     export PATH=$PATH:$HOME/.koyeb/bin
                     echo "PATH after update: $PATH"
-                    which koyeb || echo "koyeb binary not found"
-                    ls -al $HOME/.koyeb/bin || echo "Directory $HOME/.koyeb/bin not found"
+                    ls -al $HOME/.koyeb/bin
                 '''
             }
         }
@@ -58,6 +57,8 @@ pipeline {
                 sh '''
                     . venv/bin/activate
                     export PATH=$PATH:$HOME/.koyeb/bin
+                    echo "PATH during deployment: $PATH"
+                    which koyeb || echo "koyeb binary not found"
                     koyeb service update your-service-name --branch main --api-key $KOYEB_API_KEY
                 '''
             }
