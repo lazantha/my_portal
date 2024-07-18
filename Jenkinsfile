@@ -44,11 +44,7 @@ pipeline {
 
     post {
         always {
-            sh '''
-                . venv/bin/activate || true
-                deactivate || true
-                cleanWs()
-            '''
+            cleanWs()
         }
     }
 }
