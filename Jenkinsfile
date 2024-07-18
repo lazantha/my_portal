@@ -31,12 +31,19 @@ pipeline {
             }
         }
 
+        stage('Install Koyeb CLI') {
+            steps {
+                sh '''
+                    curl -sL https://get.koyeb.com | bash
+                '''
+            }
+        }
+
         stage('Deploy to Koyeb') {
             steps {
                 sh '''
-                    . venv/bin/activate && \
-                    koyeb service update your-service-name --branch main --api-key $KOYEB_API_KEY && \
-                    nohup python3 manage.py runserver 0.0.0.0:8000 &
+                    . venv/bin/activate
+                    koyeb service update your-service-name --branch main --api-key $KOYEB_API_KEY
                 '''
             }
         }
