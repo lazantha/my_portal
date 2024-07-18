@@ -34,8 +34,8 @@ pipeline {
         stage('Deploy to Koyeb') {
             steps {
                 sh '''
-                    . venv/bin/activate
-                    koyeb service update your-service-name --branch main --api-key $KOYEB_API_KEY
+                    . venv/bin/activate && \
+                    koyeb service update your-service-name --branch main --api-key $KOYEB_API_KEY && \
                     nohup python3 manage.py runserver 0.0.0.0:8000 &
                 '''
             }
