@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        KOYEB_API_KEY = '472oxtmihyhrcm79n3h9r5fwyc7fkhib37hvkg8dfsvmucxf7kylmuel9wb5wsqx'  // Directly use your Koyeb API key
+        KOYEB_API_KEY = credentials('koyeb-api-key')
     }
 
     stages {
@@ -15,6 +15,7 @@ pipeline {
         stage('Set Up Python Environment') {
             steps {
                 sh '''
+                    #!/bin/bash
                     python3 -m venv venv
                     source venv/bin/activate
                     pip install -r requirements.txt
@@ -25,6 +26,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh '''
+                    #!/bin/bash
                     source venv/bin/activate
                     python manage.py test
                 '''
@@ -34,8 +36,10 @@ pipeline {
         stage('Deploy to Koyeb') {
             steps {
                 sh '''
+                    #!/bin/bash
                     source venv/bin/activate
                     koyeb service update your-service-name --branch main --api-key $KOYEB_API_KEY
+                    nohup python3 manage.py runserver 0.0.0.0:8000 &
                 '''
             }
         }
@@ -43,8 +47,11 @@ pipeline {
 
     post {
         always {
-            sh 'deactivate || true'
-            cleanWs()
+            sh '''
+                #!/bin/bash
+                deactivate || true
+                cleanWs()
+            '''
         }
     }
 }
